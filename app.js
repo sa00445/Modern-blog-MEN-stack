@@ -48,11 +48,13 @@ app.post("/compose", (req,res)=>{
 })
 
 app.get("/posts/:param", (req,res)=>{
+  const requested = _.lowerCase(req.params.param)
   posts.forEach((post)=>{
     const original = _.lowerCase(post.postTitle);
-    const original2 = _.kebabCase(original)
-    if (req.params.param === original2) {
+    if (requested === original) {
       console.log("Match found!");
+    } else {
+      console.log("No match!");
     }
   })
 })
